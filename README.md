@@ -81,14 +81,14 @@ npm start
 
 | Método | Rota | Descrição | Auth |
 |--------|------|-----------|------|
-| POST | /reserva | Criar reserva | ✅ |
-| GET | /reservas | Listar todas as reservas | ✅ |
-| GET | /reserva/user | Reservas de um usuário | ✅ |
+| POST | /reserva | Criar reserva | ✅  |
+| GET | /reservas | Listar todas as reservas | ✅ Admin|
+| GET | /reserva/user | Reservas de um usuário | ✅ Admin |
 | GET | /reserva/sala | Reservas de uma sala | ✅ |
 | GET | /reserva/horario | Verificar disponibilidade de horário | ✅ |
 | GET | /reserva/diaria | Listar reservas do dia | ✅ |
 | GET | /search/reserva | Buscar reserva por ID | ✅ |
-| PATCH | /reserva/status | Atualizar status da reserva | ✅ |
+| PATCH | /reserva/status | Atualizar status da reserva | ✅ Admin |
 | DELETE | /reserva | Cancelar reserva | ✅ |
 
 ---
