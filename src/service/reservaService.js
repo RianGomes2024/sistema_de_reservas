@@ -27,9 +27,10 @@ const verifydisponibilidade=(async(dados)=>{
     return verifyReservas
 });
 
-const userReserva=(async(cpf)=>{
+const userReserva=(async(cpf,perfil)=>{
     const verifyUser=await userModel.searchUser(cpf)
     const reservaUsuario=await reservaModel.userReserva(cpf)
+    if(perfil!="admin")throw new Error("Apenas Admins podem realizar alterações!");
     if(verifyUser.length===0)throw new Error("Usuário não cadastrado!!");
     if(reservaUsuario.length===0)throw new Error("O usuário não possui reservas!!");
     return reservaUsuario;    
@@ -51,8 +52,9 @@ const searchReserva=(async(id_reserva)=>{
     return verifyReserva
 })
 
-const updateStatus=(async(status,id_reserva)=>{
+const updateStatus=(async(status,id_reserva,perfil)=>{
     const verifyReserva=await reservaModel.seacrhReserva(id_reserva)
+    if(perfil!="admin")throw new Error("Apenas Admins podem realizar alterações!");
     if(verifyReserva.length===0)throw new Error("Reserva não encontrada!");
     if(status !="confirmado" && status!="cancelado" && status!="concluido")throw new Error("Os status Disponiveis para reservas são ( confirmado, cancelado, concluido)");
     const reserva=await reservaModel.updateStatus(status,id_reserva)

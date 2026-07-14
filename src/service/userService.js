@@ -90,8 +90,4 @@ const realizarLogin=(async(email,senha)=>{
 
 
 
-
-
-//parei treminando controller de tudo, so testei addUser e login o resto so fiz sem testar começar daqui
-
 export default {addUser,realizarLogin,searchUser,returnUsers,updateUser,deletarUser}

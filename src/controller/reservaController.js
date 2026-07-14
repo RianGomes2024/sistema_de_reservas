@@ -24,7 +24,8 @@ const verifyDisponibilidade=(async(req,res)=>{
 const userReserva=(async(req,res)=>{
    try{
     const cpf=req.body.cpf
-    const reserva=await service.userReserva(cpf)
+    const perfil=req.usuario.perfil
+    const reserva=await service.userReserva(cpf,perfil)
     return res.status(200).json(reserva)
    }catch(error){
       return res.status(400).json({error:error.message});
@@ -55,7 +56,8 @@ const updateStatus=(async(req,res)=>{
     try{
     const status=req.body.status
     const id_reserva=req.body.id_reserva
-    const reserva=await service.updateStatus(status,id_reserva)
+    const perfil=req.usuario.perfil
+    const reserva=await service.updateStatus(status,id_reserva,perfil)
     return res.status(200).json({message:`Status atualizado com sucesso!`})
     }catch(error){
       return res.status(400).json({error:error.message});
