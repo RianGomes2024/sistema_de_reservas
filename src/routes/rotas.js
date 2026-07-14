@@ -31,13 +31,13 @@ rota.get("/search/bloqueio",controllerSala.searchBloqueio)
 
 //reservas
 rota.post("/reserva",autenticar.autenticar,controllerReserva.addReserva)
-rota.get("/reserva/horario",controllerReserva.verifyDisponibilidade)
-rota.get("/reserva/user",controllerReserva.userReserva)
-rota.get("/reserva/sala",controllerReserva.reservaSala)
-rota.get("/search/reserva",controllerReserva.searchReserva)
+rota.get("/reserva/horario",autenticar.autenticar,controllerReserva.verifyDisponibilidade)
+rota.get("/reserva/user",autenticar.autenticar,controllerReserva.userReserva)
+rota.get("/reserva/sala",autenticar.autenticar,controllerReserva.reservaSala)
+rota.get("/search/reserva",autenticar.autenticar,controllerReserva.searchReserva)
 rota.patch("/reserva/status",autenticar.autenticar,controllerReserva.updateStatus)
 rota.delete("/reserva",autenticar.autenticar,controllerReserva.cancelarReserva)
-rota.get("/reservas",controllerReserva.returnReservas)
-rota.get("/reserva/diaria",controllerReserva.listarReserva)
+rota.get("/reservas",autenticar.autenticar,controllerReserva.returnReservas)
+rota.get("/reserva/diaria",autenticar.autenticar,controllerReserva.listarReserva)
 
 export default rota

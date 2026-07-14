@@ -27,7 +27,8 @@ const searchUser=(async(req,res)=>{
 
 const returnUsers=(async(req,res)=>{
     try{
-        const user=await service.returnUsers()
+        const perfil=req.usuario.perfil
+        const user=await service.returnUsers(perfil)
         return res.status(200).json(user)
   }catch(error){
         return res.status(400).json({error:error.message});

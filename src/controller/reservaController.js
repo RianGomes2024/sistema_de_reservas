@@ -76,9 +76,9 @@ const cancelarReserva=(async(req,res)=>{
 
 const returnReservas=(async(req,res)=>{
     try{
-        const reserva=await service.returnReservas()
+        const perfil=req.usuario.perfil
+        const reserva=await service.returnReservas(perfil)
            return res.status(200).json(reserva)
-
     }catch(error){
       return res.status(400).json({error:error.message});
     }

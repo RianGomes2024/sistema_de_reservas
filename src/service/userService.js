@@ -10,34 +10,27 @@ const addUser=(async(dados)=>{
     const verifyCpf=await model.searchUser(dados.cpf)
     const verifyEmail=await model.searchUserEmail(dados.email)
     const senhaHash=await bcy.hash(dados.senha,10)
-    if(verifyCpf.length>=1){
-        throw new Error("O CPF já está cadastrado");
-    }
-    if(verifyEmail.length>=1){
-            throw new Error("O EMAIL já está cadastrado");
-    }
-    
-   dados.senha=senhaHash
-   const user=await model.addUser(dados)
-   return user
+    if(verifyCpf.length>=1)throw new Error("O CPF já está cadastrado");
+    if(verifyEmail.length>=1)throw new Error("O EMAIL já está cadastrado");
+    dados.senha=senhaHash
+    const user=await model.addUser(dados)
+    return user
 })
 
 
 const searchUser=(async(cpf)=>{
     const usuario=await model.searchUser(cpf)
-    if(usuario.length===0){
-        throw new Error("Usuário não encontrado!!");
-    }
+    if(usuario.length===0)throw new Error("Usuário não encontrado!!")
     return usuario
 })
 
 
 
-const returnUsers=(async()=>{
+const returnUsers=(async(perfil)=>{
     const usuarios=await model.returnUsers()
-    if(usuarios.length===0){
-        throw new Error("Não há usuários cadastrados em sistema!!!");
-    }
+    if(usuarios.length===0)throw new Error("Não há usuários cadastrados em sistema!!!");
+    if(perfil!="admin")throw new Error("Apenas Admins podem retornar todos usuários!");
+    
     return usuarios
 })
 
@@ -60,9 +53,7 @@ const updateUser=await(async(dados)=>{
     const cpf=dados.cpf
 
     const verifyCpf=await model.searchUser(cpf)
-    if(verifyCpf.length===0){
-        throw new Error("Usuário não encontrado!!");
-    }
+    if(verifyCpf.length===0) throw new Error("Usuário não encontrado!!");
     const values=[]
     const keys=[]
 

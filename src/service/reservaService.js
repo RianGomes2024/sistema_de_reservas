@@ -73,8 +73,9 @@ const listarReserva=(async(data,hora)=>{
     
 })
 
-const returnReservas=(async()=>{
+const returnReservas=(async(perfil)=>{
     const reservas=await reservaModel.returnreservas()
+    if(perfil!="admin")throw new Error("Apenas Admins podem retornar todas as reservas!!");
     if(reservas.length===0)throw new Error("Não há reservas cadastradas!!");
     return reservas
 })
